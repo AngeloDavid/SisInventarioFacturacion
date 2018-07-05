@@ -13,13 +13,14 @@
     <title>@yield('title')</title>
     <!-- Custom CSS -->
     <link href="{{ asset('assets/libs/flot/css/float-chart.css') }}" rel="stylesheet">
+     @yield('cssScript')
     <!-- Custom CSS -->
     <link href="{{ asset('dist/css/style.min.css') }}" rel="stylesheet">
+   
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    @yield('cssScript')
-<![endif]-->
+    <![endif]-->
 </head>
 <body>
   @yield('Contenido')
@@ -35,6 +36,7 @@
     <script src="{{ asset('dist/js/sidebarmenu.js')}}"></script>
     <!--Custom JavaScript -->
     <script src="{{ asset('dist/js/custom.min.js')}}"></script>
+    @yield('jsScript') 
     <!--This page JavaScript -->
     <!-- <script src="{{ asset('dist/js/pages/dashboards/dashboard1.js')}}"></script> -->
     <!-- Charts js Files -->
@@ -46,7 +48,7 @@
     <script src="{{ asset('assets/libs/flot/jquery.flot.crosshair.js')}}"></script>
     <script src="{{ asset('assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js')}}"></script>
     <script src="{{ asset('dist/js/pages/chart/chart-page-init.js')}}"></script>
-    @yield('jsScript')
+     
 </body>
 
 </html>

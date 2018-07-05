@@ -10,7 +10,7 @@
     </div>
 </div>
 <div id="main-wrapper">
-    <header class="topbar" data-navbarbg="skin5">
+    <header class="topbar fixed-top" data-navbarbg="skin5">
         <nav class="navbar top-navbar navbar-expand-md navbar-dark">
             <div class="navbar-header" data-logobg="skin5">
                 <!-- This is for the sidebar toggle which is visible on mobile only -->
@@ -52,7 +52,7 @@
                          <span class="d-block d-md-none"><i class="fa fa-plus"></i></span>   
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item"data-toggle="modal" data-target="#exampleModal">Action</a>
                             <a class="dropdown-item" href="#">Another action</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Something else here</a>
