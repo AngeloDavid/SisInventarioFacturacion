@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ProveedorController extends Controller
 {
+    var $title="Provedor";
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +25,10 @@ class ProveedorController extends Controller
      */
     public function create()
     {
-        //
+        $isnew=true;
+        $title=$this->title;
+        $urlForm ='Proveedor/store';
+        return view ('proveedor.new',compact('title','isnew','urlForm'));
     }
 
     /**
@@ -33,9 +37,27 @@ class ProveedorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $data = request()->all();
+        var_dump($data);
+       Proveedor::create([
+        'ruc'=>$data['ruc'], 
+        'name'=>$data['name'], 
+        'logo'=>$data['logo'],
+        'email'=>$data['email'],
+        'address'=>$data['address'],
+        'city'=>$data['city'],
+        'country'=>$data['country'],
+        'type'=>$data['type'],
+        'origin'=>$data['origin'],
+        'phone1'=>$data['phone1'],
+        'phone2'=>$data['phone2'],
+        'contact'=>$data['contact'],
+        'notes' => $data['notes'],
+        'status'=>1
+       ]);
+       return redirect()->route('category.index');
     }
 
     /**

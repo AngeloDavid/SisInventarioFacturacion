@@ -5,37 +5,13 @@
 @endsection
 @section('centro')
 
-<div class="row">
-        <div class="col-md-4">
-                <div class="card">
-                        <form class="form-horizontal">
-                            <div class="card-body">
-                                <h4 class="card-title">Categoria</h4>
-                                <div class="form-group row">
-                                    <label for="fname" class="col-sm-3 text-right control-label col-form-label">Codigo</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="fname" placeholder="First Name Here">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="lname" class="col-sm-3 text-right control-label col-form-label">Descripcion</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="lname" placeholder="Last Name Here">
-                                    </div>
-                                </div>        
-                            </div>
-                            <div class="border-top">
-                                <div class="card-body">
-                                    <button type="button" class="btn btn-primary">Submit</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-        </div>
-        <div class="col-md-8">
+<div class="row">        
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Basic Datatable</h5>
+                    <h5 class="card-title">Categorias <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                         <i class=" fas fa-plus-circle"></i>
+                      </button></h5>
                     <div class="table-responsive">
                         <table id="zero_config" class="table table-striped table-bordered">
                             <thead>
@@ -103,10 +79,7 @@
         </div>
 </div>
 <div class="row">
-    <div class="col-12">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    Launch demo modal
-                  </button>
+    <div class="col-12">            
         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
@@ -117,7 +90,28 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  ...
+                    <form class="form-horizontal">
+                        <div class="card-body">
+                            <h4 class="card-title">Categoria</h4>
+                            <div class="form-group row">
+                                <label for="fname" class="col-sm-3 text-right control-label col-form-label">Codigo</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="fname" placeholder="First Name Here">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="lname" class="col-sm-3 text-right control-label col-form-label">Descripcion</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="lname" placeholder="Last Name Here">
+                                </div>
+                            </div>        
+                        </div>
+                        <div class="border-top">
+                            <div class="card-body">
+                                <button type="button" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
