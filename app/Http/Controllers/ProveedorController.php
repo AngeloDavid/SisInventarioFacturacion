@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Proveedor;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class ProveedorController extends Controller
@@ -15,7 +16,9 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        //
+        $title=$this->title."es";
+        $proveedors = DB::table('proveedors')->paginate(1);
+        return view ('proveedor.list',compact('title','proveedors'));
     }
 
     /**
@@ -26,9 +29,10 @@ class ProveedorController extends Controller
     public function create()
     {
         $isnew=true;
-        $title=$this->title;
+        $title=$this->title." - Nuevo";
         $urlForm ='Proveedor/store';
-        return view ('proveedor.new',compact('title','isnew','urlForm'));
+        $proveedor = new Proveedor();
+        return view ('proveedor.new',compact('title','isnew','urlForm','proveedor'));
     }
 
     /**
@@ -40,7 +44,7 @@ class ProveedorController extends Controller
     public function store()
     {
         $data = request()->all();
-        var_dump($data);
+        
        Proveedor::create([
         'ruc'=>$data['ruc'], 
         'name'=>$data['name'], 
@@ -66,9 +70,14 @@ class ProveedorController extends Controller
      * @param  \App\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function show(Proveedor $proveedor)
+    public function show($id)
     {
-        //
+        $proveedor=Proveedor::find($id);
+        $isnew=false;
+        $title=$this->title." - Editar";
+        $urlForm ='Proveedor/'.$id.'/editar';
+        return view ('proveedor.new',compact('title','isnew','urlForm','proveedor'));
+
     }
 
     /**
@@ -89,9 +98,13 @@ class ProveedorController extends Controller
      * @param  \App\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proveedor $proveedor)
+    public function update($id)
     {
-        //
+        $data = request()->all();
+        $proveedor=Proveedor::find($id);
+        $proveedor->update ($data);
+        $proveedor->save();
+        return redirect()->route('Proveedor.show',['id'=>$id]);
     }
 
     /**
@@ -103,5 +116,10 @@ class ProveedorController extends Controller
     public function destroy(Proveedor $proveedor)
     {
         //
+    }
+
+    public function getAllProveedores()
+    {
+        # code...
     }
 }

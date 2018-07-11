@@ -1,6 +1,6 @@
 @extends('base')
 @section('title')
-{{$title}}-nuevo
+{{ $title }}
 @endsection
 @section('cssScript')
 @parent
@@ -11,83 +11,96 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                        <h4 class="card-title">Ingrese los siguientes datos de la Empresa</h4>
+                        <h4 class="card-title">Ingrese los siguientes datos de la Empresa <h3>{{ $proveedor->name }}</h3></h4>
                 </div>
                 <form class="form-horizontal" name="Form1" id="Form1" novalidate method="POST"  action="{{url($urlForm)}}">
-                        {{ csrf_field() }}
+                        {!! csrf_field() !!}
+                        @if (!$isnew)
+                            {{ method_field('PUT') }}
+                        @endif
                     <div class="card-body">                        
                     <div class="row">
                         <div class="col-md-6 col-12 col-lg-6">
                                 <div class="form-group row">
                                     <label for="ruc" class="col-sm-3 text-right control-label col-form-label">RUC</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="ruc" name="ruc" placeholder="Max. 13 caracteres">
+                                            <input type="text" class="form-control" id="ruc" name="ruc" placeholder="Max. 13 caracteres" value="{{ old('ruc',$proveedor->ruc) }}" >
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="name" class="col-sm-3 text-right control-label col-form-label">Nombre</label>
                                         <div class="col-sm-9"> 
-                                            <input type="text" class="form-control" id="name" name="name" placeholder="Razón social de la empresa">
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="Razón social de la empresa" value="{{ old('name',$proveedor->name) }}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="email" class="col-sm-3 text-right control-label col-form-label">E-mail</label>
                                         <div class="col-sm-9">
-                                            <input type="email" class="form-control" id="email" name="email" placeholder="Ex: ejemplo@correo.com">
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Ex: ejemplo@correo.com" value="{{ old('email',$proveedor->email) }}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="address" class="col-sm-3 text-right control-label col-form-label">Dirección</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" id="address" name="address" placeholder="">
+                                            <input type="text" class="form-control" id="address" name="address" placeholder="" value="{{ old('address',$proveedor->address) }}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="city" class="col-sm-3 text-right control-label col-form-label">Ciudad</label>
                                         <div class="col-sm-9" >
-                                            <input type="text" class="form-control" id="city" name="city" placeholder="">
+                                            <input type="text" class="form-control" id="city" name="city" placeholder="" value="{{ old('city',$proveedor->city) }}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                             <label for="country" class="col-sm-3 text-right control-label col-form-label">Pais</label>
                                             <div class="col-sm-9" >
-                                                <input type="text" class="form-control" id="country" name="country" placeholder="">
+                                                <input type="text" class="form-control" id="country" name="country" placeholder="" value="{{ old('country',$proveedor->country) }}">
                                             </div>
                                         </div>
                                     
                                     <div class="form-group row">
                                             <label for="contact" class="col-sm-3 text-right control-label col-form-label">Contacto</label>
                                             <div class="col-sm-9" >
-                                                <input type="text" class="form-control" id="contact" name="contact" placeholder="Nombre del Contacto en la empresa">
+                                                <input type="text" class="form-control" id="contact" name="contact" placeholder="Nombre del Contacto en la empresa" value="{{ old('contact',$proveedor->contact) }}">
                                             </div>
                                     </div>
                                     <div class="form-group row">
                                             <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Teléfono 1</label>
                                             <div class="col-sm-9" >
-                                                <input type="text" class="form-control" id="phone1" name="phone1" placeholder="Ex: 02 325 8745">
+                                                <input type="text" class="form-control" id="phone1" name="phone1" placeholder="Ex: 02 325 8745" value="{{ old('phone1',$proveedor->phone1) }}">
                                             </div>
                                     </div>
                                     <div class="form-group row">
                                             <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Teléfono 2</label>
                                             <div class="col-sm-9" >
-                                                <input type="text" class="form-control" id="phone2" name="phone2"  placeholder="Ex: 09 985 520 52">
+                                                <input type="text" class="form-control" id="phone2" name="phone2"  placeholder="Ex: 09 985 520 52" value="{{ old('phone2',$proveedor->phone2) }}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                                 <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Tipo</label>
                                                 <div class="col-sm-9" >
                                                     <select name="type" id="type" class="form-control">
-                                                        <option value="Natural">Natural</option>
-                                                        <option value="Juridica">Juridica</option>
+                                                        @if ($proveedor->type != 'Juridica')
+                                                            <option value="Natural" selected>Natural</option>
+                                                            <option value="Juridica" >Juridica</option>
+                                                        @else                                                            
+                                                            <option value="Natural" >Natural</option>
+                                                            <option value="Juridica" selected>Juridica</option>
+                                                        @endif                                                           
                                                     </select>
                                                 </div>
                                         </div>
                                         <div class="form-group row">
                                                     <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Origen</label>
                                                     <div class="col-sm-9" >
-                                                        <select name="origin" id="origin" class="form-control">
-                                                            <option value="Nacional">Nacional</option>
-                                                            <option value="Extranjero">Extranjero</option>
+                                                        <select name="origin" id="origin" class="form-control" value="{{ old('origin',$proveedor->origin) }}" >                                                            
+                                                            @if ($proveedor->origin != 'Extranjero')
+                                                                <option value="Nacional" selected>Nacional</option>
+                                                                <option value="Extranjero" >Extranjero</option>
+                                                            @else                                                               
+                                                                <option value="Nacional" >Nacional</option>
+                                                                <option value="Extranjero" selected>Extranjero</option>
+                                                            @endif                                                           
                                                 </select>
                                             </div>
                                         </div>                                    
@@ -111,20 +124,22 @@
                             <div class="form-group row">
                                     <label for="cono1" class="col-sm-3 text-right control-label col-form-label">Observaciones</label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control" rows="5" name="notes" id="notes" ></textarea>
+                                        <textarea class="form-control" rows="5" name="notes" id="notes" >
+                                                {{ old('notes',$proveedor->notes) }}
+                                        </textarea>
                                     </div>
                             </div>
                             @if (!$isnew)
                                 <div class="form-group row">
                                         <label class="col-md-3" for="disabledTextInput">Fecha de Creación</label>
                                         <div class="col-md-9">
-                                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" disabled="">
+                                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" disabled="" value="{{ old('created_at',$proveedor->created_at) }}">
                                         </div>
                                 </div>
                                 <div class="form-group row">
                                         <label class="col-md-3" for="disabledTextInput">Fecha de Modificación</label>
                                         <div class="col-md-9">
-                                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" disabled="">
+                                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Disabled input" disabled="" value="{{ old('created_at',$proveedor->updated_at) }}">
                                         </div>
                                 </div>   
                             @endif
@@ -137,11 +152,12 @@
                         <div class="card-body">
                             @if ($isnew)
                                 <button type="submit" class="btn btn-success"><i class="fas fa-save"></i>&nbsp;Crear</button>    
+                                <button type="button" id="btnLimpiar" class="btn btn-primary"><i class="fas fa-eraser"></i>&nbsp;Borrar</button>                            
                             @else
                                 <button type="submit" class="btn btn-info"><i class="fas fa-edit"></i>&nbsp;Editar</button>
-                                <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i>&nbsp;Deshabilitar</button>
+                                <button type="button" class="btn btn-danger"><i class="fas fa-trash"></i>&nbsp;Deshabilitar</button>
                             @endif                            
-                            <button type="button" id="btnLimpiar" class="btn btn-primary"><i class="fas fa-eraser"></i>&nbsp;Borrar</button>                            
+                            
                         </div>
                     </div>
                 </form>
