@@ -14,11 +14,14 @@ class ProveedorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $title=$this->title."es";
-        $proveedors = DB::table('proveedors')->paginate(1);
-        return view ('proveedor.list',compact('title','proveedors'));
+        $proveedors = DB::table('proveedors')->latest('created_at')->paginate(2);
+        if ($request->ajax()) {
+            return view('proveedor.list', ['proveedors' => $proveedors])->render();  
+        }
+        return view ('proveedor.index',compact('title','proveedors'));
     }
 
     /**

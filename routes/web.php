@@ -22,5 +22,5 @@ Route::post('/Proveedor/store','ProveedorController@store');
 Route::get('/Proveedor/{id}','ProveedorController@show')->where('id','[0-9]+')->name('Proveedor.show');
 Route::put('/Proveedor/{id}/editar','ProveedorController@update');
 Route::get('Companies', function () {
-    return App\Proveedor::paginate(4);
+    return App\Proveedor::paginate(1);
 });
