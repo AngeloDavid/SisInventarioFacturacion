@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Providers;
-
+use App\Menu;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -15,6 +15,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        view()->composer('base', function($view) {
+            $view->with('menus', Menu::menus());
+        });
     }
 
     /**
